@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { HotModuleReplacementPlugin } from "webpack";
 
 class ShowPage extends Component {
 constructor() {
@@ -12,6 +13,16 @@ formatName = (name) => {
  return (name.split(' ').join('_').toLowerCase())
 }
 
+// showDetails = (event) => {
+//   return this.props.hogs.map((hog) => {
+//   if (hog.name === event.target.id)
+//     console.log('hello')
+//   // <p>{hog.specialty}</p>,
+//   // <p>{hog.greased}</p>,
+//   // <p>{hog.weight}</p>
+//   }
+//  )
+// }
 
 indexHogs = ()  => {
   let pigPic;
@@ -19,8 +30,9 @@ indexHogs = ()  => {
        pigPic = require(`../hog-imgs/${this.formatName(hog.name)}.jpg`),
       <div className='ui eight wide column'>
         <p>{hog.name}</p>
-        <img src={pigPic} alt='pig pic'></img>
-        </div>     
+        <img onClick={this.showDetails} id={hog.name} width="200" src={pigPic} alt='pig pic'></img>
+        {/* {this.showDetails} */}
+      </div>     
   ))
 }
 
