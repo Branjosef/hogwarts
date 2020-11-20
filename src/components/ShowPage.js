@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { HotModuleReplacementPlugin } from "webpack";
+import HogCard from './HogCard'
+
 
 class ShowPage extends Component {
 constructor() {
@@ -13,16 +14,12 @@ formatName = (name) => {
  return (name.split(' ').join('_').toLowerCase())
 }
 
-// showDetails = (event) => {
-//   return this.props.hogs.map((hog) => {
-//   if (hog.name === event.target.id)
-//     console.log('hello')
-//   // <p>{hog.specialty}</p>,
-//   // <p>{hog.greased}</p>,
-//   // <p>{hog.weight}</p>
-//   }
-//  )
-// }
+getHog = (event) => {
+  return this.props.hogs.map((hog) => {
+  if (hog.name === event.target.id){
+  (hogDetails(hog))}
+})
+}
 
 indexHogs = ()  => {
   let pigPic;
@@ -30,8 +27,9 @@ indexHogs = ()  => {
        pigPic = require(`../hog-imgs/${this.formatName(hog.name)}.jpg`),
       <div className='ui eight wide column'>
         <p>{hog.name}</p>
-        <img onClick={this.showDetails} id={hog.name} width="200" src={pigPic} alt='pig pic'></img>
-        {/* {this.showDetails} */}
+        <img onClick={this.getHog} id={hog.name} width="200" src={pigPic} alt='pig pic'></img>
+        <span>{this.state.show}</span>
+        <HogCard hog={this.updateState} />
       </div>     
   ))
 }
